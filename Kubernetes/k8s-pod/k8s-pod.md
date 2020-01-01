@@ -147,3 +147,47 @@ spec:
                 path: string
 ```
 #### 2.Pod的基本用法
+Pod对象可以由1个或者多个容器组合而成。当两个或者多个容器应用为紧耦合关系，应该组合成一个整体对外提供服务，即将这两个容器打包为一个Pod对象。
+
+##### 2.1 静态Pod对象
+> 静态Pod对象是由Kubelet进行管理的仅存在于特定Node上的Pod对象。他们不可以通过API Server进行管理，无法与ReplicationController、Deployment或者DaemonSet进行关联，并且kubelet也无法对他们进行健康检查。静态Pod对象总是由kubelet进行创建，并且总是运行在kubelet所在的Node上运行。
+
+创建静态Pod对象的两种方式：
++ 配置文件
+
+    a.设置kubelet的启动参数**[--config]**: 指定kubelet需要监控的配置文件所在的目录，kubelet将会定期扫描该目录，并根据该目录下的\*.yaml或者\*.json进行创建.
+    b.重启kubelet服务
+    
++ HTTP方式
+
+    设置kubelet启动参数**[--manifest-url]**: kubelet将会定期请求此URL下载Pod对象的定义文件，并以\*.yaml或\*.json文件格式解析，创建Pod对象。
+    
+##### 2.2 Pod对象容器共享卷
+
+>在同一个Pod对象中的多个容器能够共享Pod对象级别的存储卷。Volume可以被定义为各种类型，容器各自进行挂载操作，将一个Volume挂载为容器内容存储卷。
+
+`配置文件示例：`
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+    name: volume-pod
+spec:
+    containers:
+    - name: tomcat
+        image: tomcat
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - name: app-logs
+            mountPath: /usr/local/tomcat/log
+      - name: logreader
+        image: busybox
+        command: ["sh", "-c", "tail -f /logs/catalina*.log"]
+        volumeMounts:
+        - name: app-logs
+            mountPath: /logs
+    volumes: app-logs 
+    - name: app-logs
+        emptyDir: {}
+```
