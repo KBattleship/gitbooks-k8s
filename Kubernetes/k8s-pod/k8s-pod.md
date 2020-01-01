@@ -191,3 +191,40 @@ spec:
     - name: app-logs
         emptyDir: {}
 ```
+
+##### 2.3 Pod对象的配置管理
+
+> 为了提高应用部署的复用能力以及灵活性，可以将应用所需要的配置文件与程序进行分离。将应用打包为容器镜像后，可以通过环境变量配置、挂载外部文件的方式在创建容器时进行配置注入，但唯一的缺点**维护性**与**复杂性**将会在大规模容器集群中所体现。但在Kubernetes中可以通过**ConfigMap**进行管理。
+
+1）ConfigMap的概念
++ 生成为容器内的环境变量
++ 设置容器的启动命令参数
++ 通过Volume的形式挂载到容器内部
+
+ConfigMap以一个或者多个`[Key:Value]`的形式保存在Kubernetes系统中。可以通过`*.yaml`配置文件或者`kubelet create [-f configmap.yaml]`命令进行创建配置管理内容。
+
+2）创建ConfigMap资源对象
+`a) *.yaml实例`
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: cm-appvars
+data:
+    apploglevel: info
+    appdatadir: /var/data    
+```
+`b) kubelet命令`
+```shell
+# 1.创建configmap.yaml配置文件
+kubelet create -f cm-appvars.yaml
+> configmap "cm-appvars" created
+
+# 2.查看创建完成的配置文件
+kubelet get configmap
+#   NAME        DATA    AGE
+#   cm-appvars   2       3s
+
+# 3.查看指定配置的详细内容
+kubelet get configmap cm-appvars -o yaml
+```
