@@ -204,6 +204,7 @@ spec:
 ConfigMap以一个或者多个`[Key:Value]`的形式保存在Kubernetes系统中。可以通过`*.yaml`配置文件或者`kubelet create [-f configmap.yaml]`命令进行创建配置管理内容。
 
 2）创建ConfigMap资源对象
+
 `a) *.yaml实例`
 ```yaml
 apiVersion: v1
