@@ -4,17 +4,37 @@
 #### 1.Service参数定义
 
 ```yaml
+# 必填，版本号
 apiVersion: v1
+# 必填
 kind: Service
+# 必填，元数据
 metadata:
+    # 必填，Service名称(符合RFC 1035规范)
     name: string
+    # 必填，命名空间(默认default)
     namespace: string
+    # 自定义标签属性列表
     labels:
       - name: string
+    # 自定义注解属性列表
     annotations:
       - name: string
+# 必填，配置内容详细描述  
 spec:
+    # 必填，LabelSelector配置，将选择具有特定Label标签的Pod对象作为管理对象
     selector: []
+    # 必填，可选值[ClusterIP | NodePort | LoadBalancer]
+    #
+    # ClusterIP:虚拟服务IP地址，该地址用于Kubernetes集群内部Pod对象访问，
+    #在Node节点上Kube-proxy通过设置的Iptables规则进行转发
+    #
+    # NodePort:使用宿主机端口，使能够访问各Node的外部客户端通过Node的
+    #IP地址和端口号即可访问到应用。
+    #
+    # LoadBalancer:使用外接负载均衡器完成到服务的负载分发，需要
+    #spec.status.loadBalaner字段指定外部负载均衡器的IP地址，并同时定义
+    #nodePort和clusterIP，用于公有云环境。
     type: string
     clusterIP: string
     sessionAffinity: string
