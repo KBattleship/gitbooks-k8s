@@ -36,15 +36,27 @@ spec:
     #spec.status.loadBalaner字段指定外部负载均衡器的IP地址，并同时定义
     #nodePort和clusterIP，用于公有云环境。
     type: string
+    # 虚拟服务IP地址：当type为ClusterIP时，如果不指定将自动进行分配；也可手动指定。
+    #当type为LoadBalancer时，必须指定
     clusterIP: string
+    # 是否支持Session，可选值为ClientIP，默认值为空。
+    #ClientIP表示将同一个客户端(有客户端IP地址决定)的访问请求都转发到同一个后端
+    #Pod对象
     sessionAffinity: string
+    # Service需要暴露的端口列表
     ports:
       - name: string
+        # 端口协议：TCP/UDP(默认TCP)
         protocol: string
+        # 服务监听端口号
         port: int
+        # 需要转发到后端Pod对象的端口号
         targetPort: int
+        # type为NodePort时，指定映射到物理机的端口号
         nodePort: int
+    # type为LoadBalancer时，设置外部负载均衡器的地址，用于公有云环境。
     status:
+        # 外部负载均衡器
         loadBalancer: 
             ingress:
                 ip: string
