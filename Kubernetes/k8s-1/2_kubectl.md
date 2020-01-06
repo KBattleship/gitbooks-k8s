@@ -67,10 +67,17 @@
     ```shell
     # 指定Pod对象的date命令，默认情况下在Pod对象的第一个容器中执行
     kubectl exec <pod-name> date
-    # 指定Pod对象
+    # 指定Pod对象在某个特定容器中执行
+    kubectl exec <pod-name> -c <container-name> date
+    # 通过bash获取Pod对象中特定容器的TTY(可以理解为登录容器)
+    kubectl exec -ti <pod-name> -c <container-name> 
     ```
 + 查看容器日志
 
     ```shell
-    #
+    # 查看容器输出到stdout日志
+    kubectl logs <pod-name>
+    # 跟踪查看容器日志(与tail -f命令具有相同效果)
+    kubectl logs -f <pod-name> -c <container-name>
     ```
+        
