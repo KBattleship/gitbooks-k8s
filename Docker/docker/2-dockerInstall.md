@@ -25,4 +25,13 @@
         # 安装最新版本（不指定版本号默认为最新）
         sudo yum install docker-ce docker-ce-cli containerd.io
         ```
+    5. 安装docker-compose
+        ```shell
+        # 下载二进制可执行文件，并保存在指定路径
+        sudo curl -L "https://github.com/docker/compose/releases/download/1.25.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+        # 修改文件权限
+        sudo chmod +x /usr/local/bin/docker-compose
+        # 创建软链到全局可执行路径
+        sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+        ```
 + **软件包安装** 
