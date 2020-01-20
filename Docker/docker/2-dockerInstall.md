@@ -9,16 +9,19 @@
             lvm2
         ```
     2. 通过`yum-config-manager`添加存储库
+    
         ```shell
         $~:sudo yum-config-manager \
             --add-repo \
             https://download.docker.com/linux/centos/docker-ce.repo
         ```
     3. 列出存储库中排序后可用的全部版本
+
         ```shell
         yum list docker-ce --showduplicates | sort -r
         ```
     4. 进行安装
+    
         ```shell
         # 指定版本号安装
         sudo yum install docker-ce-<VERSION_STRING> docker-ce-cli-<VERSION_STRING> containerd.io
@@ -26,6 +29,7 @@
         sudo yum install docker-ce docker-ce-cli containerd.io
         ```
     5. 安装docker-compose
+    
         ```shell
         # 下载二进制可执行文件，并保存在指定路径
         sudo curl -L "https://github.com/docker/compose/releases/download/1.25.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose

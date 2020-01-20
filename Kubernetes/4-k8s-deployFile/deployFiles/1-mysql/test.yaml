@@ -1,69 +1,6 @@
-# 4-1.Mysql-K8s构建
-通过K8s构建一个MySQL服务，分为三部分：ConfigMap、Services、StatefulSet.
-#### 1.ConfigMap构建
-`ConfigMap本身没有特殊之处，可以通过不同部分应用于不同的Pod对象。每一个Pod对象都会决定在初始化时获取基于StatefulSet控制器提供的信息`
-```yaml
-# fileName: mysql-configmap.yaml
-apiVersion: v1
-kind: ConfigMap
-metadata: 
-    name: mysql
-    labels:
-        app: mysql
-data:
-    # 当前配置仅在主节点生效
-    master.cnf: /
-        [mysqld]
-        log-bin
-    # 当前配置仅在从节点生效
-    slave.cnf:  /
-        [mysqld]
-        super-read-only
-```
-```shell
-# 通过当前ConfigMap配置文件覆盖my.cnf配置文件，可以达到独立控制部署主从节点的效果。
-kubectl apply -f mysql-configmap.yaml
-```
-#### 2.Services构建
-
-```yaml
-# fileName: mysql-services.yaml
-apiVersion: v1
-kind: Service
-metadata:
-    name: mysql
-    labels:
-        app: mysql
-spec:
-    ports:
-        - name: mysql
-            port: 3306
-    clusterIP: None
-    selector:
-        app: mysql
----
-apiVersion: v1
-kind: Service
-metadata:
-    name: mysql-read
-    labels:
-        app: mysql
-spec:
-    ports:
-        - name: mysql
-        port: 3307
-    selector:
-        app: mysql    
-```
-```shell
-kubectl apply -f mysql-services.yaml
-```
-#### 3.StatefulSet构建
-```yaml
-# fileName: mysql-statefulset.yaml
 apiVersion: apps/v1
 kind: StatefulSet
-metadata: 
+metadata:
   name: mysql
 spec:
   selector:
@@ -228,4 +165,3 @@ spec:
       resources:
         requests:
           storage: 10Gi
-```

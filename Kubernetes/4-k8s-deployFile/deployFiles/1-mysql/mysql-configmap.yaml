@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata: 
+    name: mysql
+    labels:
+        app: mysql
+data:
+    # 当前配置仅在主节点生效
+    master.cnf: /
+        [mysqld]
+        log-bin
+    # 当前配置仅在从节点生效
+    slave.cnf:  /
+        [mysqld]
+        super-read-only
