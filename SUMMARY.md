@@ -11,6 +11,8 @@
         * [1-2.Kubectl命令行工具](Kubernetes/1-k8s-base/2_kubectl.md)
     * [2.深入Pod](Kubernetes/2-k8s-pod/README.md)
         * [2-1.Pod对象](Kubernetes/2-k8s-pod/1.k8s-pod.md)
+        * [2-2.Pod示例](Kubernetes/2-k8s-pod/2.pods-example.md)
+        * [2-3.Pod详解](Kubernetes/2-k8s-pod/3.pod-detial.md)
     * [3.深入Service](Kubernetes/2-k8s-service/README.md)
         * [3-1.Service对象](Kubernetes/2-k8s-service/1.k8s-service.md)
     * [4.K8s服务构建](Kubernetes/4-k8s-deployFile/README.md)
