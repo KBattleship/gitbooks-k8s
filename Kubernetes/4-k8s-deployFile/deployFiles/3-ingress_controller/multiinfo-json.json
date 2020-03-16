@@ -1,0 +1,188 @@
+//
+// 上线一条侧栏
+//
+{
+    "fixed_sidebar":{
+        "duration":536,
+        "message_color":"#FFFFFF",
+        "message_img":"http://imgdmic.cloudp.cc/userfiles/fileupload/201907/13/1149938279489318914.jpg",
+        "rollrate":10,
+        "appointment_time":1583983920000,
+        "messages":[
+            {
+                "tenant_id":"2fa5ca6c",
+                "data_id":"db1c2fd727",
+                "marquee_status":0,
+                "postdate":"2020-03-12 11:31:32.0",
+                "title":"fsdfs",
+                "marquee_order":10,
+                "poster":"stupidhao",
+                "content":"fasfsf"
+            }
+        ],
+        "id":"102",
+        "base_color":"#0053b4,#0028a4"
+    },
+    "weather":Object{...},
+    "fixed_footbar":{
+        "duration":30,
+        "message_color":"#bb0000",
+        "rollrate":0,
+        "sub_messages":Array[1],
+        "appointment_time":1583983923034,
+        "sub_message_color":"#bb0000",
+        "sub_messagetext_color":"#FFFFFF",
+        "postdate":1583983923034,
+        "logo":"http://imgdmic.cloudp.cc/userfiles/fileupload/201907/03/1146349393834717184.jpeg",
+        "id":"5ba37",
+        "priority":0,
+        "messagetext_color":"#FFFFFF"
+    },
+    "weather_forecasts":Array[3],
+    "report_host":"https://apidcp.cloudp.cc/",
+    "bar_type":"fixed"
+}
+//
+// 上线侧栏及底栏
+//
+{
+    "fixed_sidebar":{
+        "duration":441,
+        "message_color":"#FFFFFF",
+        "message_img":"http://imgdmic.cloudp.cc/userfiles/fileupload/201907/13/1149938279489318914.jpg",
+        "rollrate":10,
+        "appointment_time":1583983920000,
+        "messages":[
+            {
+                "tenant_id":"2fa5ca6c",
+                "data_id":"db1c2fd727",
+                "marquee_status":0,
+                "postdate":"2020-03-12 11:31:32.0",
+                "title":"fsdfs",
+                "marquee_order":10,
+                "poster":"stupidhao",
+                "content":"fasfsf"
+            }
+        ],
+        "id":"102",
+        "base_color":"#0053b4,#0028a4"
+    },
+    "weather":Object{...},
+    "fixed_footbar":{
+        "sub_messages":[
+            {
+                "tenant_id":"2fa5ca6c",
+                "data_id":"9014ddceb6",
+                "marquee_status":0,
+                "postdate":"2020-03-12 11:31:08.0",
+                "title":"-",
+                "marquee_order":10,
+                "poster":"stupidhao",
+                "content":"fsfas"
+            }
+        ],
+        "appointment_time":1583983923000,
+        "sub_messagetext_color":"#FFFFFF",
+        "postdate":1583983882000,
+        "priority":0,
+        "title":"adfsf",
+        "messagetext_color":"#FFFFFF",
+        "duration":383,
+        "message_color":"#bb0000",
+        "rollrate":0,
+        "sub_message_color":"#bb0000",
+        "logo":"http://imgdmic.cloudp.cc/userfiles/fileupload/201907/03/1146349393834717184.jpeg",
+        "messages":Array[1],
+        "id":"101"
+    },
+    "weather_forecasts":Array[3],
+    "report_host":"https://apidcp.cloudp.cc/",
+    "bar_type":"fixed"
+}
+//
+// 下线一条底栏
+//
+{
+    "fixed_sidebar":{
+        "duration":359,
+        "message_color":"#FFFFFF",
+        "message_img":"http://imgdmic.cloudp.cc/userfiles/fileupload/201907/13/1149938279489318914.jpg",
+        "rollrate":10,
+        "appointment_time":1583983920000,
+        "messages":[
+            {
+                "tenant_id":"2fa5ca6c",
+                "data_id":"db1c2fd727",
+                "marquee_status":0,
+                "postdate":"2020-03-12 11:31:32.0",
+                "title":"fsdfs",
+                "marquee_order":10,
+                "poster":"stupidhao",
+                "content":"fasfsf"
+            }
+        ],
+        "id":"102",
+        "base_color":"#0053b4,#0028a4"
+    },
+    "weather":Object{...},
+    "fixed_footbar":{
+        "duration":30,
+        "message_color":"#bb0000",
+        "rollrate":0,
+        "sub_messages":[
+            {
+                "marquee_status":0,
+                "marquee_order":0,
+                "content":"行政部"
+            }
+        ],
+        "appointment_time":1583984101391,
+        "sub_message_color":"#bb0000",
+        "sub_messagetext_color":"#FFFFFF",
+        "postdate":1583984101391,
+        "logo":"http://imgdmic.cloudp.cc/userfiles/fileupload/201907/03/1146349393834717184.jpeg",
+        "id":"11dd8",
+        "priority":0,
+        "messagetext_color":"#FFFFFF"
+    },
+    "weather_forecasts":[
+        {
+            "date":"2020-03-13",
+            "temperature":{
+                "max":"10",
+                "lowest":"-2"
+            },
+            "weekday":"星期五",
+            "weather_img":"http://imgdmic.cloudp.cc/userfiles/fileupload/201907/12/1149523979121807362.png"
+        },
+        {
+            "date":"2020-03-14",
+            "temperature":{
+                "max":"15",
+                "lowest":"0"
+            },
+            "weekday":"星期六",
+            "weather_img":"http://imgdmic.cloudp.cc/userfiles/fileupload/201907/12/1149523979121807362.png"
+        },
+        {
+            "date":"2020-03-15",
+            "temperature":{
+                "max":"15",
+                "lowest":"0"
+            },
+            "weekday":"星期日",
+            "weather_img":"http://imgdmic.cloudp.cc/userfiles/fileupload/201907/12/1149523979121807362.png"
+        }
+    ],
+    "report_host":"https://apidcp.cloudp.cc/",
+    "bar_type":"fixed"
+}
+//
+// 两条全部下线
+//
+{
+    "weather":Object{...},
+    "weather_forecasts":Array[3],
+    "report_host":"https://apidcp.cloudp.cc/",
+    "bar_type":"none"
+}
