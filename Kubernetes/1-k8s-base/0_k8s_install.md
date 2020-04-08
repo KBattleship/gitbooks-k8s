@@ -70,12 +70,66 @@ docker load < k8s.tar.gz
 ```
 
 ## 3.使用kubeadm初始化集群主节点
++ 初始化主节点
+    ```shell
+    kubeadm init --kubernetes-version=v1.17.1 --pod-network-cidr=10.244.0.0/16 --service-cidr=10.96.0.0/12 --ignore-preflight-errors=Swap
+    
+    # 增加Kubernetes本地全局变量配置
+    ### 非root用户
+    mkdir -p $HOME/.kube
+    sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+    sudo chown $(id -u):$(id -g) $HOME/.kube/config
+    ### root用户
+    echo "export KUBECONFIG=/etc/kubernetes/admin.conf" >> ~/.bash_profile
+    source .bash_profile
+    ```
++ 初始化主节点网络
 
-```shell
-kubeadm init --kubernetes-version=v1.17.1 --pod-network-cidr=10.244.0.0/16 --service-cidr=10.96.0.0/12 --ignore-preflight-errors=Swap
-```
-
-
-
-
-
+    ```shell
+    # 使用flannel配置网络
+    kubectl apply -f kube-flannel.yml
+    ```
++ 关于节点污点问题
+    > taint:污点的意思.如果某节点设置为污点，那么pod将不允许在此节点上运行。
+    
+    ```shell
+    # 查看污点信息
+    kubectl describe node master|grep -i taints
+    # 删除默认污点
+    kubectl taint nodes master node-role.kubernetes.io/master-
+    # 设置污点
+    kubectl taint node master key1=value1:NoSchedule
+    # 删除污点
+    kubectl taint nodes master  key1-    
+    ### 关于污点语法
+    kubectl taint node [node] key=value[effect]   
+     其中[effect] 可取值: [ NoSchedule | PreferNoSchedule | NoExecute ]
+      NoSchedule: 一定不能被调度
+      PreferNoSchedule: 尽量不要调度
+      NoExecute: 不仅不会调度, 还会驱逐Node上已有的Pod
+    ```
++ Node节点加入集群
+    
+    + 查看令牌
+        ```shell
+        kubeadm token list
+        ```
+        
+        `如果令牌过期可以重新生成令牌`
+    + 初始化令牌
+        ```shell
+        kubeadm token create
+        ```
+    + 生成新的加密串
+        ```shell
+        openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null | openssl dgst -sha256 -hex | sed 's/^.* //'
+        ```
+    + node加入master
+        ```shell
+        kubeadm join 192.168.66.175:6443 --token uirohl.1auw4f6ebu1c1etc \
+    --discovery-token-ca-cert-hash sha256:f0d231c5a175c4f84d94cf0d7df2efc96e4ac396482ed9e04880a9d2c9b6a84e 
+        ```
+    + master剔除node（待验证）
+    ```shell
+    etcdctl --cacert=/etc/etcd/pki/ca.pem --cert=/etc/etcd/pki/server.pem --key=/etc/etcd/pki/server-key.pem --endpoints=https://210.74.13.8:2379 del /registry --prefix
+    ```
