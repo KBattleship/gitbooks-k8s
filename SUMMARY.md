@@ -15,6 +15,7 @@
         * [1-1.K8s基础](Kubernetes/1-k8s-base/1_concept.md)
         * [1-2.Kubectl工具](Kubernetes/1-k8s-base/2_kubectl.md)
         * [1-3.Kubeadm工具](Kubernetes/1-k8s-base/3_kubeadm.md)
+        * [1-4.Kubenetes集群初始化](Kubernetes/1-k8s-base/3_kubeadm.md)
     * [2.深入Pod](Kubernetes/2-k8s-pod/README.md)
         * [2-1.Pod对象](Kubernetes/2-k8s-pod/1.k8s-pod.md)
         * [2-2.Pod示例](Kubernetes/2-k8s-pod/2.pods-example.md)
