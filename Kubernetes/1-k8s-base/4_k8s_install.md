@@ -72,7 +72,7 @@ docker load < k8s.tar.gz
 ## 3.使用kubeadm初始化集群主节点
 + 初始化主节点
     ```shell
-    kubeadm init --kubernetes-version=v1.17.1 --pod-network-cidr=10.244.0.0/16 --service-cidr=10.96.0.0/12 --ignore-preflight-errors=Swap
+    kubeadm init –apiserver-advertise-address=192.168.66.176 --kubernetes-version=v1.17.1 --pod-network-cidr=10.244.0.0/16 --service-cidr=10.96.0.0/12 --ignore-preflight-errors=Swap
     
     # 增加Kubernetes本地全局变量配置
     ### 非root用户
